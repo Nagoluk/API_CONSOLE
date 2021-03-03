@@ -7,9 +7,9 @@ import {getIsLogined, getLogin, getSubLogin} from '../store/toolkit/selectors/au
 import {setFullScreenToggle} from '../helpers/fullscreen';
 import { checkAutorization, logout} from '../store/toolkit/slices/auth';
 
-import {setRequestField } from '../store/toolkit/slices/requests';
+
 import {History} from '../components/history/history';
-import {sendRequest} from '../store/toolkit/slices/requests';
+import {sendRequest, setRequestError, setRequestField} from '../store/toolkit/slices/requests';
 import {
   getRequestError,
   getRequestField,
@@ -149,12 +149,12 @@ export function Console () {
   }
 
   const format = () => {
-    // try {
-    //   setRequsetError(false)
-    //   setRequest(JSON.stringify(JSON.parse(request), null, 2))
-    // }catch (e){
-    //   setRequsetError(true)
-    // }
+    try {
+      dispatch(setRequestError(""))
+      dispatch(setRequestField(JSON.stringify(JSON.parse(request), null, 2)))
+    }catch (e){
+      dispatch(setRequestError("incorrect input"))
+    }
   }
 
 
@@ -189,7 +189,9 @@ export function Console () {
               >
                 <div className={"form__item " + (requestError ? "error": "") } style={{height: "100%"}}>
                   <label className={"title"}>Запрос:</label>
-                  {/*<Editor value={request} />*/}
+                  {/*<Editor value={request} onChange={(e: any) => {*/}
+                  {/*  console.log(e)*/}
+                  {/*}}/>*/}
                   <textarea value={request}
                             onChange={(e) => dispatch(setRequestField(e.target.value)) }>
 

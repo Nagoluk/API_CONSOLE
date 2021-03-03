@@ -67,19 +67,19 @@ function LoginPage() {
                       <Field name="login"
                              validate={composeValidators(login,required)}
                              component={TextInput}
-                             someArbitraryOtherProp={"Логин"}
+                             label={"Логин"}
                       />
 
                       <Field name="sublogin"
                              validate={composeValidators(login)}
                              component={TextInput}
-                             someArbitraryOtherProp={"Сублогин"}
+                             label={"Сублогин"}
                       />
 
                       <Field name="password"
                              validate={composeValidators(password, required)}
                              component={PasswordInput}
-                             someArbitraryOtherProp={"Пароль"}
+                             label={"Пароль"}
                       />
 
 
